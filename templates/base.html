@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestor de Películas</title>
+</head>
+<body>
+    <h1>Gestor de Películas 🎬</h1>
+    <nav>
+        <a href="{% url 'home' %}">Inicio</a> |
+        <a href="{% url 'crear_pelicula' %}">Agregar Película</a> |
+        <a href="{% url 'crear_director' %}">Agregar Director</a> |
+        <a href="{% url 'crear_actor' %}">Agregar Actor</a> |
+        <a href="{% url 'buscar_peliculas' %}">Buscar Películas</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
