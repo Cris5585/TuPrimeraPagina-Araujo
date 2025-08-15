@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import PeliculaForm, DirectorForm, ActorForm
-from .models import Pelicula, Director, Actor
+from django.urls import reverse_lazy 
+from .forms import PeliculaForm, DirectorForm, ActorForm, SerieForm
+from .models import Pelicula, Director, Actor, Serie
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+
 # Create your views here.
 
 def home(request):
@@ -55,3 +58,36 @@ def buscar_peliculas(request):
         resultado = Pelicula.objects.filter(titulo__icontains=titulo)
     return render(request, 'gestor_peliculas/buscar.html', {'resultado': resultado})
 
+
+# Vistas basadas en clases
+
+class SerieListView(ListView):
+    model = Serie
+    template_name = 'gestor_peliculas/listar-series.html'
+    context_object_name = 'series'
+   
+
+
+class SerieCreateView(CreateView):
+    model = Serie
+    form_class = SerieForm
+    template_name = 'gestor_peliculas/crear-serie.html'
+
+    success_url = reverse_lazy('listar_series')
+
+
+class SerieUpdateView(UpdateView):
+    model = Serie
+    form_class = SerieForm
+    template_name = 'gestor_peliculas/crear-serie.html'
+    success_url = reverse_lazy('listar_series')
+
+class SerieDetailView(DetailView):
+    model = Serie
+    template_name = 'gestor_peliculas/detalle-serie.html'
+    context_object_name = 'series'
+
+class SerieDeleteView(DeleteView):
+    model = Serie
+    template_name = 'gestor_peliculas/eliminar-serie.html'
+    success_url = reverse_lazy('listar_series')

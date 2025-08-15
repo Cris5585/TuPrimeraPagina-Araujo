@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Eliminar Serie</h2>
+<p>¿Estás seguro de que querés eliminar la serie "<strong>{{ object.titulo }}</strong>"?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+    <a href="{% url 'listar_series' %}">Cancelar</a>
+</form>
+{% endblock %}

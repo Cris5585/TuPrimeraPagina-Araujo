@@ -26,3 +26,13 @@ class Actor(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+class Serie(models.Model):
+    titulo = models.CharField(max_length=100)
+    director = models.CharField(max_length=100)
+    genero = models.CharField(max_length=50)
+    fecha_estreno = models.IntegerField()
+
+    def __str__(self):
+        return self.titulo
+
