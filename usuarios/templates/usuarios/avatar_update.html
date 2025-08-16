@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block tittle %}
+<h1 class="masthead-heading mb-0">Actualizar Avatar</h1>
+<h2 class="masthead-subheading mb-0">Cambia tu foto de perfil</h2>
+{% endblock %}
+
+{% block content %}
+<div class="container px-5" style="max-width: 600px; margin-top: 50px;">
+    <div class="card shadow-lg p-4">
+        <h3 class="text-center mb-4">Cambiar Avatar</h3>
+
+        {% if user.profile.avatar %}
+        <div class="text-center mb-3">
+            <img src="{{ user.profile.avatar.url }}" alt="Avatar actual" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover;">
+        </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid mt-3">
+                <button type="submit" class="btn btn-primary btn-lg rounded-pill">Actualizar Avatar</button>
+            </div>
+        </form>
+
+        <div class="d-grid mt-2">
+            <a href="{% url 'profile' %}" class="btn btn-secondary btn-lg rounded-pill">Volver al Perfil</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

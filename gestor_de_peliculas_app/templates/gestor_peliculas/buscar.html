@@ -1,17 +1,39 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
-<h2>Buscar Película</h2>
-<form method="get">
-    <input type="text" name="titulo" placeholder="Título de película">
-    <button type="submit">Buscar</button>
-</form>
+<div class="container mt-4">
+    <h2 class="mb-4">🔎 Buscar Película</h2>
+    
+    <form method="get" class="row g-3 mb-4">
+        <div class="col-md-8">
+            <input type="text" name="titulo" class="form-control" placeholder="Escribe el título de la película">
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+        </div>
+    </form>
 
-{% if resultado %}
-    <ul>
-        {% for peli in resultado %}
-            <li>{{ peli.titulo }} - {{ peli.fecha_estreno }} - {{ peli.director }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
+    {% if resultado %}
+        <h4 class="mb-3">🎬 Resultados:</h4>
+        <div class="row">
+            {% for peli in resultado %}
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ peli.titulo }}</h5>
+                            <p class="card-text mb-1"><strong>Estreno:</strong> {{ peli.fecha_estreno }}</p>
+                            <p class="card-text"><strong>Director:</strong> {{ peli.director }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% if request.GET.titulo %}
+            <div class="alert alert-warning mt-3" role="alert">
+                No se encontraron películas con ese título.
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
 {% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block tittle %}
+<h1 class="masthead-heading mb-0">Perfil de Usuario</h1>
+<h2 class="masthead-subheading mb-0">Gestiona tu información personal</h2>
+{% endblock %}
+
+{% block content %}
+<div class="container px-5" style="max-width: 600px; margin-top: 50px;">
+    <div class="card shadow-lg p-4">
+        <h3 class="text-center mb-4">Bienvenido, {{ user.username }}</h3>
+
+        <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item"><strong>Nombre completo:</strong> {{ user.get_full_name }}</li>
+            <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+            <li class="list-group-item"><strong>Fecha de registro:</strong> {{ user.date_joined|date:"d/m/Y H:i" }}</li>
+        </ul>
+
+        {% if user.avatar %}
+            <img src="{{ user.avatar.image.url }}" alt="Avatar" style="width: 200px; height: 200px;">
+        {% else %}
+            <p>No tienes un avatar configurado.</p>
+        {% endif %}
+
+        <div class="d-grid mt-3">
+            <a href="{% url 'profile-update' %}" class="btn btn-primary btn-lg rounded-pill">Editar Perfil</a>
+        </div>
+        
+        <div class="d-grid mt-2">
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary btn-lg rounded-pill w-100">
+                    Cerrar Sesión
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

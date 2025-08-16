@@ -3,12 +3,18 @@ from django.urls import reverse_lazy
 from .forms import PeliculaForm, DirectorForm, ActorForm, SerieForm
 from .models import Pelicula, Director, Actor, Serie
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
 def home(request):
     return render(request, 'gestor_peliculas/home.html')
 
+def home(request):
+    return render(request, 'gestor_peliculas/about.html')
+
+@login_required
 def crear_pelicula(request):
     if request.method == 'POST':
         form = PeliculaForm(request.POST)
@@ -25,6 +31,7 @@ def crear_pelicula(request):
 
     return render(request, 'gestor_peliculas/crear_pelicula.html', {'form': form})
 
+@login_required
 def crear_director(request):
     if request.method == 'POST':
         form = DirectorForm(request.POST)
@@ -38,6 +45,7 @@ def crear_director(request):
         form = DirectorForm()
     return render(request, 'gestor_peliculas/crear_director.html', {'form': form})
 
+@login_required
 def crear_actor(request):
     if request.method == 'POST':
         form = ActorForm(request.POST)
@@ -68,7 +76,7 @@ class SerieListView(ListView):
    
 
 
-class SerieCreateView(CreateView):
+class SerieCreateView(LoginRequiredMixin, CreateView):
     model = Serie
     form_class = SerieForm
     template_name = 'gestor_peliculas/crear-serie.html'
@@ -76,7 +84,7 @@ class SerieCreateView(CreateView):
     success_url = reverse_lazy('listar_series')
 
 
-class SerieUpdateView(UpdateView):
+class SerieUpdateView(LoginRequiredMixin ,UpdateView):
     model = Serie
     form_class = SerieForm
     template_name = 'gestor_peliculas/crear-serie.html'
@@ -87,7 +95,7 @@ class SerieDetailView(DetailView):
     template_name = 'gestor_peliculas/detalle-serie.html'
     context_object_name = 'series'
 
-class SerieDeleteView(DeleteView):
+class SerieDeleteView(LoginRequiredMixin, DeleteView):
     model = Serie
     template_name = 'gestor_peliculas/eliminar-serie.html'
     success_url = reverse_lazy('listar_series')

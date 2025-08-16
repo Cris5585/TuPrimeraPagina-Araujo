@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block tittle %}
+<h1 class="masthead-heading mb-0">Inicia Sesión</h1>
+<h2 class="masthead-subheading mb-0">Accede a tu cuenta para gestionar tus películas</h2>
+{% endblock %}
+
+{% block content %}
+<div class="container px-5" style="max-width: 600px; margin-top: 50px;">
+    <div class="card shadow-lg p-4">
+        <h3 class="text-center mb-4">Formulario de Login</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid mt-3">
+                <button type="submit" class="btn btn-primary btn-lg rounded-pill">Iniciar Sesión</button>
+            </div>
+        </form>
+        <p class="text-center mt-3">
+            ¿No tienes cuenta? <a href="{% url 'register' %}">Regístrate aquí</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
+

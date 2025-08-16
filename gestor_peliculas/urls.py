@@ -22,6 +22,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('gestor_de_peliculas_app.urls')),
+    path('usuarios/', include('usuarios.urls')),
     
 ]
 

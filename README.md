@@ -1,29 +1,47 @@
-# Pre-entrega Django: Gestor de Peliculas
+# Entrega Final - Django: Gestor de Películas
 
-## Instrucciones de uso
+Gestor de Películas es una aplicación web desarrollada con Django que permite organizar y explorar películas, series, directores y actores favoritos.
 
-1- Crear entorno virtual:  
+## Requisitos previos
 
-   python -m venv venv
+Python 3.x
 
-2- Instalar Django:
-  
-  pip install django
+pip
+
+### Instrucciones de uso
+
+Crear y activar entorno virtual:
+
+Windows:
+python -m venv venv
+venv\Scripts\activate
+
+Mac/Linux:
+python -m venv venv
+source venv/bin/activate
+
+#### Instalar dependencias dentro del entorno virtual:
+pip install -r requirements.txt
 
 
-3- Iniciar servidor: 
+#### Funcionalidades
 
- python manage.py runserver
+Página de inicio con bienvenida al usuario y avatar.
+
+Crear película: formulario para agregar una nueva película.
+
+Crear director: formulario para agregar un director.
+
+Crear actor: formulario para agregar un actor.
+
+Buscar película: búsqueda de películas por título.
+
+Crear y listar series: agregar nuevas series y ver la lista existente.
+
+Perfil de usuario: gestionar información personal y cerrar sesión.
 
 
-### Funcionalidades
 
-Pagina de inicio
 
-Crear pelicula - formulario para agregar una pelicula
+##### Video
 
-Crear Director - Formulario para agregar un director
-
-Crear Actor - Formulario para agregar actor
-
-Buscar Pelicula - Busqueda de peliculas por título
