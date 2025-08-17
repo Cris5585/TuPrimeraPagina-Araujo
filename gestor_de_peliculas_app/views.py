@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 def home(request):
     return render(request, 'gestor_peliculas/home.html')
 
-def home(request):
+def about(request):
     return render(request, 'gestor_peliculas/about.html')
 
 @login_required
